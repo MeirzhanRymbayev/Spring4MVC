@@ -20,4 +20,5 @@ public class HelloWorldController {
         model.addAttribute("greeting", "HelloWorld Again, from Spring 4 MVC");
         return "welcome";
     }
+
 }
