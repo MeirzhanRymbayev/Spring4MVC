@@ -7,6 +7,9 @@ import org.springframework.web.servlet.DispatcherServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class HelloWorldInitializer implements WebApplicationInitializer {
 
@@ -18,7 +21,6 @@ public class HelloWorldInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/");
-
     }
 
 }
