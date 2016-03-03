@@ -2,7 +2,7 @@ package com.websystique.springmvc.controller;
 /*
 http://websystique.com/springmvc/spring-4-mvc-form-validation-with-hibernate-jsr-validator-resource-handling-using-annotations/
 */
-import com.websystique.springmvc.model.Student;
+import com.websystique.springmvc.model.Pizza;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -24,8 +24,8 @@ public class HelloWorldController {
     * */
     @RequestMapping(method = RequestMethod.GET)
     public String newRegistration(ModelMap model) {
-        Student student = new Student();
-        model.addAttribute("student", student);
+        Pizza pizza = new Pizza();
+        model.addAttribute("student", pizza);
         return "enroll";
     }
 
@@ -35,11 +35,11 @@ public class HelloWorldController {
     * It also validates the user input
     */
     @RequestMapping(method = RequestMethod.POST)
-    public String saveRegistration(@Valid Student student, BindingResult result, ModelMap model) {
+    public String saveRegistration(@Valid Pizza pizza, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             return "enroll";
         }
-        model.addAttribute("success", "Dear " + student.getFirstName() + " , your Registration completed successfully");
+        model.addAttribute("success", "Dear " + pizza.getFirstName() + " , your Registration completed successfully");
         return "success";
     }
 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Student implements Serializable {
+public class Pizza implements Serializable {
     @Size(min = 3, max = 30)
     private String firstName;
 
@@ -118,7 +118,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student [firstName=" + firstName + ", lastName=" + lastName
+        return "Pizza [firstName=" + firstName + ", lastName=" + lastName
                 + ", sex=" + sex + ", dob=" + dob + ", email=" + email
                 + ", section=" + section + ", country=" + country
                 + ", firstAttempt=" + firstAttempt + ", subjects=" + subjects
