@@ -2,12 +2,19 @@ package com.websystique.springmvc.configuration;
 
 
 import com.websystique.springmvc.model.Pizza;
+import com.websystique.springmvc.viewresolver.ExcelViewResolver;
+import com.websystique.springmvc.viewresolver.Jaxb2MarshallingXmlViewResolver;
+import com.websystique.springmvc.viewresolver.JsonViewResolver;
+import com.websystique.springmvc.viewresolver.PdfViewResolver;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -15,6 +22,10 @@ import org.springframework.web.servlet.view.JstlView;
 
 import java.util.ArrayList;
 
+
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = "com.websystique.springmvc")
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     /*
@@ -36,7 +47,13 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         //Define all possible view resolvers
         ArrayList<ViewResolver> resolvers = new ArrayList<ViewResolver>();
 
-        resolvers.add();
+        resolvers.add(jaxb2MarshallingXmlResolver());
+        resolvers.add(jsonViewResolver());
+        resolvers.add(jspViewResolver());
+        resolvers.add(pdfViewResolver());
+        resolvers.add(excelViewResolver());
+        resolver.setViewResolvers(resolvers);
+        return resolver;
     }
 
     /*
@@ -48,6 +65,15 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setClassesToBeBound(Pizza.class);
         return new Jaxb2MarshallingXmlViewResolver(marshaller);
+    }
+
+    /*
+    * Configure View resolver to provide JSON output using JACKSON library to
+    * convert object to JSON format.
+    */
+    @Bean
+    public ViewResolver jsonViewResolver() {
+        return new JsonViewResolver();
     }
 
     /*

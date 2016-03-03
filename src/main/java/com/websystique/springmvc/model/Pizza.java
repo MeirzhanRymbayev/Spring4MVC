@@ -1,13 +1,13 @@
 package com.websystique.springmvc.model;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
-
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement
 public class Pizza {
+
     private String name;
 
     private String flavor;
@@ -17,9 +17,9 @@ public class Pizza {
     public Pizza() {
     }
 
-    public Pizza(String name, String flavor, List<String> toppings) {
+    public Pizza(String name) {
         this.name = name;
-        this.flavor = flavor;
+        this.flavor = "spicy";
         this.toppings.add("Cheese");
         this.toppings.add("bakon");
     }
