@@ -1,127 +1,54 @@
 package com.websystique.springmvc.model;
 
+import com.sun.xml.internal.txw2.annotation.XmlElement;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class Pizza implements Serializable {
-    @Size(min = 3, max = 30)
-    private String firstName;
+@XmlRootElement
+public class Pizza {
+    private String name;
 
-    @Size(min = 3, max = 30)
-    private String lastName;
+    private String flavor;
 
-    @NotEmpty
-    private String sex;
+    private List<String> toppings = new ArrayList<String>();
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Past
-    @NotNull
-    private Date dob;
-
-    @Email
-    @NotEmpty
-    private String email;
-
-
-    @NotEmpty
-    private String section;
-
-    @NotEmpty
-    private String country;
-
-    private boolean firstAttempt;
-
-    @NotEmpty
-    private List<String> subjects = new ArrayList<String>();
-
-    public String getFirstName() {
-        return firstName;
+    public Pizza() {
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public Pizza(String name, String flavor, List<String> toppings) {
+        this.name = name;
+        this.flavor = flavor;
+        this.toppings.add("Cheese");
+        this.toppings.add("bakon");
     }
 
-    public String getLastName() {
-        return lastName;
+
+    public String getName() {
+        return name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    @XmlElement
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSex() {
-        return sex;
+    public String getFlavor() {
+        return flavor;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    @XmlElement
+    public void setFlavor(String flavor) {
+        this.flavor = flavor;
     }
 
-    public Date getDob() {
-        return dob;
+    public List<String> getToppings() {
+        return toppings;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSection() {
-        return section;
-    }
-
-    public void setSection(String section) {
-        this.section = section;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public boolean isFirstAttempt() {
-        return firstAttempt;
-    }
-
-    public void setFirstAttempt(boolean firstAttempt) {
-        this.firstAttempt = firstAttempt;
-    }
-
-    public List<String> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(List<String> subjects) {
-        this.subjects = subjects;
-    }
-
-    @Override
-    public String toString() {
-        return "Pizza [firstName=" + firstName + ", lastName=" + lastName
-                + ", sex=" + sex + ", dob=" + dob + ", email=" + email
-                + ", section=" + section + ", country=" + country
-                + ", firstAttempt=" + firstAttempt + ", subjects=" + subjects
-                + "]";
+    @XmlElement
+    public void setToppings(List<String> toppings) {
+        this.toppings = toppings;
     }
 }
